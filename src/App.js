@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import './App.css'
 import 'antd/dist/antd.css'
-import './index.css'
 import { Layout, Menu } from 'antd'
 import { DesktopOutlined, FileOutlined } from '@ant-design/icons'
 import Home from './pages/Home/index.jsx'
@@ -18,12 +17,18 @@ function App() {
 
   const onCollapse = (collapsedParam) => setCollasped({ collapsedParam })
 
+  const logoStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+
   return (
     <Router>
       <Layout style={{ minHeight: '100vh' }}>
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
           <Link to="/">
-            <div className="logo" />
+            <div className="logo" style={logoStyle}><h1 className="logo-text">Home</h1></div>
           </Link>
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             <SubMenu key="sub1" icon={<DesktopOutlined />} title="Product">
