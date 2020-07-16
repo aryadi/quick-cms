@@ -9,7 +9,7 @@ function List(props) {
     <>
       <div className="product-info-container">
         <Image />
-        <Title style={{ marginLeft: 16 }}>Lorem Ipsum</Title>
+        <Title style={{ marginLeft: 16 }}>Product Name</Title>
       </div>
 
       <h1>Variant List</h1>

@@ -70,7 +70,7 @@ const ProductForm = () => {
             loading={loading}
             onClick={() => enterLoading(0)}
           >
-            Click me!
+            Submit
           </Button>
         </Form.Item>
       </Form>
