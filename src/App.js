@@ -8,6 +8,7 @@ import { DesktopOutlined, FileOutlined } from '@ant-design/icons'
 import Home from './pages/Home/index.jsx'
 import ProductForm from './pages/Product/Form'
 import VariantForm from './pages/Variant/Form'
+import VariantList from './pages/Variant/list/List'
 
 const { Header, Content, Footer, Sider } = Layout
 const { SubMenu } = Menu
@@ -52,6 +53,7 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route path="/product/form" component={ProductForm} />
                 <Route path="/variant/form" component={VariantForm} />
+                <Route path="/variant/list" component={VariantList} />
                 <Route render={() => <h1>404 Not Found</h1>} />
               </Switch>
             </div>
