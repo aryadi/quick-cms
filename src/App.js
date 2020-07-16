@@ -28,7 +28,7 @@ function App() {
               <Menu.Item key="2">List</Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" icon={<FileOutlined />} title="Variant">
-              <Menu.Item key="1"><Link to='/variant/form'>Insert</Link></Menu.Item>
+              <Menu.Item key="3"><Link to='/variant/form'>Insert</Link></Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>
