@@ -1,7 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import 'antd/dist/antd.css'
-import { Form, Input, InputNumber, Button } from 'antd'
+import { Form, Input, Button } from 'antd'
 
 const layout = {
   labelCol: {
@@ -13,13 +12,6 @@ const layout = {
 }
 const validateMessages = {
   required: '${label} is required!',
-  types: {
-    email: '${label} is not validate email!',
-    number: '${label} is not a validate number!',
-  },
-  number: {
-    range: '${label} must be between ${min} and ${max}',
-  },
 }
 
 const ProductForm = () => {
