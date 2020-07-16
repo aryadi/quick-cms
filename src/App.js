@@ -25,6 +25,7 @@ function App() {
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             <SubMenu key="sub1" icon={<DesktopOutlined />} title="Product">
               <Menu.Item key="1"><Link to='/product/form'>Insert</Link></Menu.Item>
+              <Menu.Item key="2">List</Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" icon={<FileOutlined />} title="Variant">
               <Menu.Item key="1"><Link to='/variant/form'>Insert</Link></Menu.Item>
