@@ -21,28 +21,37 @@ function App() {
     <Router>
       <Layout style={{ minHeight: '100vh' }}>
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-          <div className="logo" />
+          <Link to="/">
+            <div className="logo" />
+          </Link>
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             <SubMenu key="sub1" icon={<DesktopOutlined />} title="Product">
-              <Menu.Item key="1"><Link to='/product/form'>Insert</Link></Menu.Item>
+              <Menu.Item key="1">
+                <Link to="/product/form">Insert</Link>
+              </Menu.Item>
               <Menu.Item key="2">List</Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" icon={<FileOutlined />} title="Variant">
-              <Menu.Item key="3"><Link to='/variant/form'>Insert</Link></Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/variant/form">Insert</Link>
+              </Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0, marginBottom: 16 }} />
+          <Header
+            className="site-layout-background"
+            style={{ padding: 0, marginBottom: 16 }}
+          />
           <Content style={{ margin: '0 16px' }}>
             <div
               className="site-layout-background"
               style={{ padding: 24, minHeight: 360 }}
             >
               <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/product/form" component={ProductForm}/>
-                <Route path="/variant/form" component={VariantForm}/>
+                <Route exact path="/" component={Home} />
+                <Route path="/product/form" component={ProductForm} />
+                <Route path="/variant/form" component={VariantForm} />
                 <Route render={() => <h1>404 Not Found</h1>} />
               </Switch>
             </div>
