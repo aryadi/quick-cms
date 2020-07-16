@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import 'antd/dist/antd.css'
 import { Form, Input, Button } from 'antd'
 import { AutoComplete } from 'antd'
@@ -28,6 +28,8 @@ const validateMessages = {
 }
 
 const VariantForm = () => {
+  const [loading, setLoading] = useState(false)
+
   const onFinish = (values) => {
     console.log(values)
   }
@@ -35,6 +37,14 @@ const VariantForm = () => {
   const onSelect = (value, optionObject) => {
     console.log(optionObject)
   }
+
+  const enterLoading = () => {
+    setLoading(true)
+  }
+
+  setTimeout(() => {
+    setLoading(false)
+  }, 2000)
 
   return (
     <>
@@ -116,8 +126,12 @@ const VariantForm = () => {
           <Input.TextArea />
         </Form.Item>
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-          <Button type="primary" htmlType="submit">
-            Submit
+          <Button
+            type="primary"
+            loading={loading}
+            onClick={() => enterLoading(0)}
+          >
+            Click me!
           </Button>
         </Form.Item>
       </Form>
