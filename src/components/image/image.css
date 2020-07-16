@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
+  background-color: #ddd;
+  border-radius: 5px;
+}
