@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import { Form, Input, Button } from "antd";
 import { postImage } from "../../API-services/images";
+import { successModal, errorModal } from "../../utilities/modal";
 
 const layout = {
   labelCol: {
@@ -16,26 +17,45 @@ const validateMessages = {
 };
 
 const ImageLogoForm = () => {
-  const [loading, setLoading] = useState(false);
+  let isMounted = true
+  let [loading, setLoading] = useState(false);
+  let [imageUrl, setImageUrl] = useState("");
 
-  const onFinish = (values) => {
-    console.log(values);
+  const imageInputChange = (e) => {
+    if (isMounted) {
+      setImageUrl(e.target.value);
+    }
   };
 
-  const enterLoading = async () => {
-    setLoading(true);
+  const onSubmit = async () => {
+    if (isMounted) {
+      setLoading(true);
+    }
 
     try {
       let response = await postImage({
-        url: "/home/buku/anggur2"
-      })
-      
-      console.log(response)
+        url: imageUrl,
+      });
+
+      if (response.status === 200) {
+        successModal();
+      } else {
+        errorModal();
+      }
     } catch (error) {
-      console.error(error) 
+      errorModal();
+      console.error(error);
     }
-    setLoading(false);
+    if (isMounted) {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    return function cleanup() {
+      isMounted = false
+    }
+  }, [])
 
   return (
     <>
@@ -43,7 +63,6 @@ const ImageLogoForm = () => {
       <Form
         {...layout}
         name="nest-messages"
-        onFinish={onFinish}
         validateMessages={validateMessages}
       >
         <Form.Item
@@ -55,15 +74,11 @@ const ImageLogoForm = () => {
             },
           ]}
         >
-          <Input />
+          <Input value={imageUrl} onChange={imageInputChange} />
         </Form.Item>
 
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-          <Button
-            type="primary"
-            loading={loading}
-            onClick={enterLoading}
-          >
+          <Button type="primary" loading={loading} onClick={onSubmit}>
             Submit
           </Button>
         </Form.Item>

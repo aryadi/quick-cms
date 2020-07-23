@@ -1,9 +1,0 @@
-* {
-  box-sizing: border-box;
-}
-
-.product-info-container {
-  margin-bottom: 32px;
-  display: flex;
-  width: 100%;
-}

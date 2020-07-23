@@ -20,7 +20,7 @@ function Home() {
               Detail
             </Button>
           </Link>
-          <Link to="/product/form">
+          <Link to="/product/insert">
             <Button style={{ marginLeft: 16 }} type="primary">
               Edit
             </Button>
@@ -36,7 +36,7 @@ function Home() {
               Detail
             </Button>
           </Link>
-          <Link to="/product/form">
+          <Link to="/product/insert">
             <Button style={{ marginLeft: 16 }} type="warning">
               Edit
             </Button>

@@ -1,17 +1,23 @@
-import axios from 'axios'
-
-const axiosInstance = axios.create({
-  baseURL: 'localhost:80',
-  timeout: 10000,
-  headers: {'Content-type': 'application/json'}
-});
+import axiosInstance from './axiosInstance'
 
 export async function postImage(payload) {
   try {
-    let response = axiosInstance.post('/api/image', payload)
+    let response = axiosInstance.post("/api/image", payload);
 
-    return response
+    return response;
   } catch (error) {
-    console.error(error)
+    console.error(error);
+  }
+}
+
+export async function getImage(page = 1, perPage = 10) {
+  try {
+    let response = axiosInstance.get(
+      `/api/images?page=${page}&per_page=${perPage}`
+    );
+
+    return response;
+  } catch (error) {
+    console.error(error);
   }
 }

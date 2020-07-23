@@ -8,8 +8,12 @@ import Home from "./pages/Home/index.jsx";
 import ProductForm from "./pages/Product/Form";
 import VariantForm from "./pages/Variant/Form";
 import ImageLogoForm from "./pages/ImageLogo/Form";
-import VariantList from "./pages/Variant/list/List";
 import LinkImageProduct from "./pages/Product/LinkImageForm";
+import LinkImageVariant from "./pages/Variant/LinkImageForm";
+import ProductList from "./pages/Product/List";
+import VariantList from "./pages/Variant/List";
+import ProductDetail from "./pages/ProductDetail";
+import VariantDetail from "./pages/VariantDetail";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -37,19 +41,28 @@ function App() {
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
             <SubMenu key="sub1" icon={<DesktopOutlined />} title="Products">
               <Menu.Item key="1">
-                <Link to="/product/form">Insert</Link>
+                <Link to="/product/insert">Insert</Link>
               </Menu.Item>
               <Menu.Item key="2">
-                <Link to="/product/images">Product Image</Link>
+                <Link to="/product/images">Attach Image</Link>
+              </Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/product/list">List</Link>
               </Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" icon={<FileOutlined />} title="Variants">
-              <Menu.Item key="3">
+              <Menu.Item key="4">
                 <Link to="/variant/form">Insert</Link>
+              </Menu.Item>
+              <Menu.Item key="5">
+                <Link to="/variant/images">Attach Images</Link>
+              </Menu.Item>
+              <Menu.Item key="6">
+                <Link to="/variant/list">List</Link>
               </Menu.Item>
             </SubMenu>
             <SubMenu key="sub3" icon={<FileOutlined />} title="Images">
-              <Menu.Item key="4">
+              <Menu.Item key="7">
                 <Link to="/image_logo/form">Insert</Link>
               </Menu.Item>
             </SubMenu>
@@ -66,12 +79,27 @@ function App() {
               style={{ padding: 24, minHeight: 360 }}
             >
               <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/product/form" component={ProductForm} />
+                <Route exact path="/" component={ProductList} />
+                <Route path="/product/insert" component={ProductForm} />
                 <Route path="/product/images" component={LinkImageProduct} />
+                <Route path="/product/list" component={ProductList} />
+                <Route
+                  path="/product/detail/:productId"
+                  component={ProductDetail}
+                />
+                <Route path="/product/:productId" component={ProductForm} />
                 <Route path="/variant/form" component={VariantForm} />
-                <Route path="/image_logo/form" component={ImageLogoForm} />
+                <Route path="/variant/images" component={LinkImageVariant} />
                 <Route path="/variant/list" component={VariantList} />
+                <Route
+                  path="/variant/detail/:variantId"
+                  component={VariantDetail}
+                />
+                <Route
+                  path="/variant/:variantId"
+                  component={VariantForm}
+                />
+                <Route path="/image_logo/form" component={ImageLogoForm} />
                 <Route render={() => <h1>404 Not Found</h1>} />
               </Switch>
             </div>

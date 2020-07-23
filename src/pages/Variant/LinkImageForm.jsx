@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import { Form, Button, AutoComplete } from "antd";
 import { PlusOutlined, CloseOutlined } from "@ant-design/icons";
-import { getProduct } from "../../API-services/product";
+import { getVariant } from "../../API-services/variant";
 import { getImage } from "../../API-services/images";
-import { attachImageToProduct } from "../../API-services/imageAttachent";
+import { attachImageToVariant } from "../../API-services/imageAttachent";
 import { successModal, errorModal } from "../../utilities/modal";
 
 const validateMessages = {
@@ -13,9 +13,9 @@ const validateMessages = {
 
 const ImageLogoForm = () => {
   let isMounted = true
-  let [productOption, setProductOption] = useState([]);
+  let [variantOption, setVariantOption] = useState([]);
   let [imageOption, setImageOption] = useState([]);
-  let [productId, setProductId] = useState("");
+  let [variantId, setVariantId] = useState("");
   let [loading, setLoading] = useState(false);
   let [images, setImages] = useState([
     {
@@ -25,7 +25,7 @@ const ImageLogoForm = () => {
   ]);
 
   const onSelect = (value, optionObject) => {
-    setProductId(optionObject.id);
+    setVariantId(optionObject.id);
   };
 
   const insertValue = (value, optionObject, index) => {
@@ -57,7 +57,7 @@ const ImageLogoForm = () => {
       image_id: image.id,
     }));
     try {
-      let response = await attachImageToProduct(productId, payload)
+      let response = await attachImageToVariant(variantId, payload)
       if (response.status === 200) {
         successModal();
       } else {
@@ -75,20 +75,20 @@ const ImageLogoForm = () => {
     setLoading(false);
   }, 2000);
 
-  const fetchProducts = async () => {
+  const fetchVariants = async () => {
     try {
-      let response = await getProduct(1, 1000);
+      let response = await getVariant(1, 1000);
       let result = [];
       if (response.status === 200) {
-        result = response.data.data.products.map((product) => ({
-          id: product.id,
-          value: product.name,
+        result = response.data.data.variants.map((variant) => ({
+          id: variant.id,
+          value: variant.name,
         }));
         if (isMounted) {
-          setProductOption(result);
+          setVariantOption(result);
         }
       } else {
-        console.error("fail to fetch products");
+        console.error("fail to fetch variants");
       }
     } catch (error) {
       console.log(error);
@@ -104,9 +104,7 @@ const ImageLogoForm = () => {
           id: image.id,
           value: image.url,
         }));
-        if (isMounted) {
-          setImageOption(result);
-        }
+        setImageOption(result);
       } else {
         console.error("fail to fetch images");
       }
@@ -116,7 +114,7 @@ const ImageLogoForm = () => {
   };
 
   useEffect(() => {
-    fetchProducts();
+    fetchVariants();
     fetchImage(1, 1000);
 
     return function cleanup() {
@@ -134,8 +132,8 @@ const ImageLogoForm = () => {
         validateMessages={validateMessages}
       >
         <Form.Item
-          name={["user", "product"]}
-          label="Product"
+          name={["user", "variant"]}
+          label="Variant"
           rules={[
             {
               required: true,
@@ -146,9 +144,9 @@ const ImageLogoForm = () => {
             style={{
               width: 200,
             }}
-            options={productOption}
+            options={variantOption}
             onSelect={onSelect}
-            placeholder="Insert product name"
+            placeholder="Insert variant name"
             filterOption={(inputValue, option) =>
               option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
               -1
